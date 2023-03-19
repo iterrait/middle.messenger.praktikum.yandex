@@ -1,0 +1,16 @@
+@import './src/styles/partials/variables';
+
+button {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.button-primary {
+  color: $color-basic;
+  background-color: $color-primary;
+}

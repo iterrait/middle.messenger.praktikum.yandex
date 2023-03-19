@@ -1,0 +1,33 @@
+@import './src/styles/partials/variables';
+
+.input {
+  width: 100%;
+  padding-bottom: 12px;
+
+  .input__title {
+    padding-bottom: 12px;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-secondary;
+  }
+
+  input {
+    width: 100%;
+    padding: 6px 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $color-primary;
+    font-size: 14px;
+    font-weight: 500;
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      color: $color-secondary;
+    }
+  }
+}

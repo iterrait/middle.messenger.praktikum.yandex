@@ -1,0 +1,54 @@
+@import './src/styles/partials/variables';
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: $font-family, sans-serif;
+  color: $color-main;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: contain;
+  user-select: none;
+  overflow: hidden;
+  line-height: 16px;
+  background-color: $color-base;
+}
+
+.plug {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .plug__title {
+    font-size: 256px;
+    font-weight: 700;
+    line-height: 294px;
+  }
+
+  .plug__description {
+    padding-top: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .plug__link {
+    padding-top: 12px;
+  }
+}
+
+.form-title {
+  padding-bottom: 48px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+}
