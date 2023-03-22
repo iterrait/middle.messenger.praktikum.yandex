@@ -7,7 +7,7 @@ import tmpl404 from 'bundle-text:./404-tmpl.hbs';
 const props = {
     link: {
         text: 'Назад к чатам',
-        href: '/chat'
+        href: '/chat.html'
     },
 }
 

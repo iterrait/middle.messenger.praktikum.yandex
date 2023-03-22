@@ -7,7 +7,7 @@ import tmpl500 from 'bundle-text:./500-tmpl.hbs';
 const props = {
     link: {
         text: 'Назад к чатам',
-        href: '/chat'
+        href: '/chat.html'
     },
 }
 

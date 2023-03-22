@@ -29,7 +29,7 @@ const props = {
     },
     link: {
         text: 'Нет аккаунта?',
-        href: '/sign-up'
+        href: '/sign-up.html'
     },
 }
 
