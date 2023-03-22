@@ -1,5 +1,5 @@
 import { ChangePasswordPage } from './pages/change-password/change-password';
-import { Chat } from './pages/chat/chat';
+import { ChatPage } from './pages/chat/chat';
 import { Main } from './pages/main/main';
 import { ProfilePage } from './pages/profile/profile';
 import { SignInPage } from './pages/sign-in/sign-in';
@@ -9,19 +9,19 @@ import { Page500 } from './pages/500/500';
 
 export const App = () => {
     switch (window.location.pathname) {
-        case '/change-password':
+        case '/change-password.html':
             return ChangePasswordPage();
-        case '/chat':
-            return Chat();
-        case '/sign-in':
+        case '/chat.html':
+            return ChatPage();
+        case '/sign-in.html':
             return SignInPage();
-        case '/sign-up':
+        case '/sign-up.html':
             return SignUpPage();
-        case '/profile':
+        case '/profile.html':
             return ProfilePage();
-        case '/404':
+        case '/404.html':
             return Page404();
-        case '/500':
+        case '/500.html':
             return Page500();
         default:
             return Main();

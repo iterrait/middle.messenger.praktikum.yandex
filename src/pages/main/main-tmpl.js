@@ -2,25 +2,25 @@ export const mainTmpl = `
     <nav>
         <ul>
             <li>
-                <a href="/sign-in">Sign in</a>
+                <a href="/sign-in.html">Sign in</a>
             </li>
             <li>
-                <a href="/sign-up">Sign up</a>
+                <a href="/sign-up.html">Sign up</a>
             </li>
             <li>
-                <a href="/chat">Chat</a>
+                <a href="/profile.html">Profile</a>
             </li>
             <li>
-                <a href="/profile">Profile</a>
+                <a href="/change-password.html">Change password</a>
             </li>
             <li>
-                <a href="/change-password">Change password</a>
+                <a href="/404.html">404</a>
             </li>
             <li>
-                <a href="/404">404</a>
+                <a href="/500.html">500</a>
             </li>
             <li>
-                <a href="/500">500</a>
+                <a href="/chat.html">Chat</a>
             </li>
         </ul>
     </nav>

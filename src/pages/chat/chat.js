@@ -1,7 +1,10 @@
-import * as Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
-import { chatTmpl } from './chat-tmpl';
+import chatTmpl from 'bundle-text:./chat-tmpl.hbs';
 
-export const Chat = () => {
-    return Handlebars.compile(chatTmpl)();
+export const ChatPage = () => {
+    const precompiled = (new Function('return ' + Handlebars.precompile(chatTmpl))());
+    const template = Handlebars.template(precompiled);
+
+    return template({});
 };
