@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel src/static/index.html",
     "build": "parcel build src/static/index.html",
-    "start": " node server.js"
+    "start": "parcel build static/*.html && node server.js"
   },
   "keywords": [],
   "author": "",
