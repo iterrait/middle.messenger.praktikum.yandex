@@ -3,7 +3,7 @@
 
 Макеты: https://www.figma.com/file/KWUSuIAPMRdTNbrAzTh60I/CHAT?node-id=0-1&t=m6crXRdgSIS4KIUM-0
 
-Ссылка на опубликованное приложение: https://sunny-figolla-afda30.netlify.app
+Ссылка на опубликованное приложение: https://voluble-puppy-edd679.netlify.app
 
 ## Команды
 - `npm install` — установка зависимостей,
