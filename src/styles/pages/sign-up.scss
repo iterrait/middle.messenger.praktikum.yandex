@@ -1,18 +1,13 @@
 @import './src/styles/partials/variables';
 
-.sign-in {
+.sign-up {
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  form {
-    height: 350px;
-  }
-
   button {
-    margin-top: 80px;
-    margin-bottom: 12px;
+    margin-top: 38px;
   }
 }

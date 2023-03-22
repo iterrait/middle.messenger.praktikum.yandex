@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "dev": "parcel src/static/index.html",
+    "build": "parcel build src/static/index.html",
     "scss": "node-sass -watch scss -o css",
     "start": "node server.js"
   },
@@ -14,14 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3",
-    "express": "^4.18.2",
-    "parcel": "^2.8.3",
-    "parcel-bundler": "^1.12.5"
+    "handlebars": "^4.7.7"
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@parcel/transformer-inline-string": "^2.8.3",
-    "handlebars": "^4.7.7"
+    "parcel": "^2.8.3",
+    "parcel-transformer-handlebars": "^1.0.0",
+    "@parcel/transformer-sass": "^2.8.3"
   }
 }

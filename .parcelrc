@@ -1,7 +1,6 @@
 {
   "extends": "@parcel/config-default",
   "transformers": {
-    "bundle-text:*": ["...","@parcel/transformer-inline-string"],
-    "*.scss": ["@parcel/transformer-sass"]
+    "bundle-text:*": ["...", "@parcel/transformer-inline-string"]
   }
 }

@@ -1,33 +1,49 @@
 @import './src/styles/partials/variables';
 
-.input {
+input {
   width: 100%;
-  padding-bottom: 12px;
+  margin: 0;
+  padding: 12px 0 6px 0;
+  font-family: $font-family, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: inherit;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $color-primary;
 
-  .input__title {
-    padding-bottom: 12px;
-    font-size: 9px;
-    font-weight: 700;
-    line-height: 9px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  &::placeholder {
     color: $color-secondary;
   }
+}
 
-  input {
-    width: 100%;
-    padding: 6px 0;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid $color-primary;
-    font-size: 14px;
-    font-weight: 500;
+label {
+  width: 100%;
+}
 
-    &::placeholder {
-      font-size: 14px;
-      font-weight: 500;
-      color: $color-secondary;
-    }
-  }
+.input-title {
+  margin-top: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-secondary;
+  text-align: left;
+}
+
+.input-error {
+  padding-top: 6px;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 10px;
+  color: $color-alarm;
+  text-align: left;
+}
+
+.error-validation {
+  color: $color-alarm;
+  border-color: $color-alarm;
 }
