@@ -1,0 +1,25 @@
+.plug {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .plug__title {
+    font-size: 256px;
+    font-weight: 700;
+    line-height: 294px;
+  }
+
+  .plug__description {
+    padding-top: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .plug__link {
+    padding-top: 12px;
+  }
+}

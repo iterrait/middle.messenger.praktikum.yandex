@@ -1,0 +1,17 @@
+@import './src/styles/partials/variables';
+
+button.close-button {
+  $button-size: 24px;
+
+  width: $button-size;
+  height: $button-size;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  margin: 0;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3e%3cpath d='M7.05029 7.05023L16.9498 16.9497' stroke='%239BA0AB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3cpath d='M7.05029 16.9498L16.9498 7.05027' stroke='%239BA0AB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: inherit;
+}

@@ -1,0 +1,28 @@
+@import './src/styles/partials/variables';
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family, sans-serif !important;
+  color: $color-main !important;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: contain;
+  user-select: none;
+  overflow: hidden;
+  line-height: 16px;
+  background-color: $color-base;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}

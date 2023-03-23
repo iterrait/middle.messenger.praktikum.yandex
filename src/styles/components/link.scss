@@ -1,0 +1,9 @@
+@import './src/styles/partials/variables';
+
+.link {
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-primary;
+  line-height: 13px;
+  text-decoration: none;
+}
