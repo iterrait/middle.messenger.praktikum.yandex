@@ -16,15 +16,11 @@ input {
 
   &::placeholder {
     color: $color-secondary;
+    opacity: .4;
   }
 }
 
 label {
-  width: 100%;
-}
-
-.input-title {
-  margin-top: 12px;
   font-size: 10px;
   font-weight: 700;
   line-height: 9px;
@@ -35,15 +31,15 @@ label {
 }
 
 .input-error {
+  color: $color-alarm;
+  border-color: $color-alarm;
+}
+
+.error {
   padding-top: 6px;
   font-size: 9px;
   font-weight: 400;
   line-height: 10px;
   color: $color-alarm;
   text-align: left;
-}
-
-.error-validation {
-  color: $color-alarm;
-  border-color: $color-alarm;
 }
