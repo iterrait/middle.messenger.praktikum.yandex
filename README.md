@@ -9,3 +9,6 @@
 - `npm install` — установка зависимостей,
 - `npm run start` — запуск проекта по адресу http://localhost:3000/
 
+##Pull Requests
+- sprint 2: https://github.com/iterrait/middle.messenger.praktikum.yandex/pull/4
+
