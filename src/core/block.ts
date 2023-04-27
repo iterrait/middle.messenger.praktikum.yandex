@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import EventBus from './event-bus';
 import * as Handlebars from 'handlebars';
+import EventBus from './event-bus';
 
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
@@ -15,12 +15,15 @@ export default abstract class Block<P extends Props = any> {
   };
 
   private _element: HTMLElement | null;
+
   private _meta: { tag: string; props: P };
+
   private eventBus: () => EventBus;
 
   protected props: P;
 
   public children: Children;
+
   public id = uuidv4();
 
   protected constructor(tag = 'div', propsAndChildren: P) {
@@ -76,17 +79,17 @@ export default abstract class Block<P extends Props = any> {
   addEvents() {
     const { events = {} } = this.props;
 
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
-    })
+    });
   }
 
   removeEvents() {
     const { events = {} } = this.props;
 
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.removeEventListener(eventName, events[eventName]);
-    })
+    });
   }
 
   addAttributes(): void {
@@ -116,10 +119,10 @@ export default abstract class Block<P extends Props = any> {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child.id}"></div>`
+      propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
     });
 
-    const fragment = document.createElement("template");
+    const fragment = document.createElement('template');
     fragment.innerHTML = template
       ? Handlebars.compile(template)(propsAndStubs)
       : '';
@@ -136,7 +139,7 @@ export default abstract class Block<P extends Props = any> {
   }
 
   private _componentDidMount() {
-    Object.values(this.children).forEach(child => child.dispatchComponentDidMount())
+    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
   }
 
   dispatchComponentDidMount() {
@@ -192,7 +195,7 @@ export default abstract class Block<P extends Props = any> {
       deleteProperty() {
         throw new Error('Access denied');
       },
-    })
+    });
   }
 
   get element() {

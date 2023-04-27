@@ -12,7 +12,7 @@ interface Props {
 
 export default class Button extends Block<Props> {
   constructor(props: Props) {
-    super('button', {...props});
+    super('button', { ...props });
   }
 
   render(): DocumentFragment {

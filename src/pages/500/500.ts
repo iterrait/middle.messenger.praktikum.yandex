@@ -18,7 +18,7 @@ const data = {
       class: 'link',
     },
   },
-}
+};
 
 class Page500 extends Block<Props> {
   constructor(props: Props) {

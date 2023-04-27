@@ -1,10 +1,11 @@
 import Block from '../../core/block';
 
+import { validateForm } from '../../utils/validator';
+
+import Button from '../../components/button/button';
 import chatTemplate from './chat-tmpl';
 import ChatPreview from '../../components/chat-preview/chat-preview';
 import Input from '../../components/input/input';
-import Button from '../../components/button/button';
-import {validateForm} from '../../utils/validator';
 
 interface Props {
   chatPreview: Block,
@@ -43,16 +44,16 @@ const data = {
     text: '',
     attr: {
       class: 'send-message',
-    }
-  }
-}
+    },
+  },
+};
 
 class ChatPage extends Block<Props> {
   constructor(props: Props) {
     const events = {
       submit: (e: Event) => this.onSubmit(e),
     };
-    super('div', {...props, events});
+    super('div', { ...props, events });
     this.element?.classList.add('chat');
   }
 
@@ -83,4 +84,3 @@ export default new ChatPage({
   messageInput: new Input(data.messageInput),
   sendMessageButton: new Button(data.sendMessageButton),
 });
-

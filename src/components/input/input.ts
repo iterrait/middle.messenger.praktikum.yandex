@@ -24,7 +24,7 @@ export default class Input extends Block<Props> {
       focusin: (e: Event) => this.onFocus(e),
       focusout: (e: Event) => this.onBlur(e),
     };
-    super('div', {...props, events});
+    super('div', { ...props, events });
     this.element?.classList.add('form-control');
   }
 

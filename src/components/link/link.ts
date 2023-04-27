@@ -15,25 +15,10 @@ interface Props {
 
 export default class Link extends Block<Props> {
   constructor(props: Props) {
-    super('a', {...props});
-
-    this.props.events = {
-      focusin: (e: Event): void => this.onFocus(e),
-      focusout: (e: Event): void => this.onBlur(e),
-    };
+    super('a', { ...props });
   }
 
   render(): DocumentFragment {
     return this.compile(linkTemplate, this.props);
   }
-
-  onFocus = (e: Event): void => {
-    console.log('onFocus e', e);
-    // isValidate(e, this.element!, '.form__error', 'show')
-  };
-
-  onBlur = (e: Event): void => {
-    console.log('onBlur e', e);
-    // isValidate(e, this.element!, '.form__error', 'show')
-  };
 }

@@ -75,7 +75,7 @@ const data = {
   closeButton: {
     attr: {
       class: 'close-button',
-    }
+    },
   },
   button: {
     text: 'Сохранить',
@@ -84,14 +84,14 @@ const data = {
       class: 'button-primary',
     },
   },
-}
+};
 
 class ProfilePage extends Block<Props> {
   constructor(props: Props) {
     const events = {
       submit: (e: Event) => this.onSubmit(e),
     };
-    super('div', {...props, events});
+    super('div', { ...props, events });
     this.element?.classList.add('profile');
   }
 

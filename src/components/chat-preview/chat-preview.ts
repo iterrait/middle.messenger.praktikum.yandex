@@ -14,7 +14,7 @@ interface Props {
 
 export default class ChatPreview extends Block<Props> {
   constructor(props: Props) {
-    super('div', {...props});
+    super('div', { ...props });
     this.element?.classList.add('chat-preview');
   }
 

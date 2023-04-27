@@ -44,14 +44,14 @@ const data = {
       class: 'link',
     },
   },
-}
+};
 
 class SignInPage extends Block<Props> {
   constructor(props: Props) {
     const events = {
       submit: (e: Event) => this.onSubmit(e),
     };
-    super('div', {...props, events});
+    super('div', { ...props, events });
     this.element?.classList.add('sign-in');
   }
 

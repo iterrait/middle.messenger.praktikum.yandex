@@ -18,7 +18,7 @@ const data = {
       class: 'link',
     },
   },
-}
+};
 
 class Page404 extends Block<Props> {
   constructor(props: Props) {
