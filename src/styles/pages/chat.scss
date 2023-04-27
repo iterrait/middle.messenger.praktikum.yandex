@@ -81,10 +81,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-
-    & > div {
-      margin-left: 12px;
-    }
   }
 
   .form-control {
@@ -96,6 +92,7 @@
     min-height: $icon-size;
     width: $icon-size;
     height: $icon-size;
+    margin-right: 12px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
