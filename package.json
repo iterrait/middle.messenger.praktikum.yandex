@@ -21,9 +21,10 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "handlebars": "^4.7.7",
-    "typescript": "^5.0.4",
     "stylelint": "^15.6.0",
-    "stylelint-config-standard": "^33.0.0"
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
