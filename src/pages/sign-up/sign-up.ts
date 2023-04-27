@@ -4,6 +4,7 @@ import { validateForm } from '../../utils/validator';
 
 import Button from '../../components/Button/Button';
 import Input from '../../components/input/input';
+
 import signUpTemplate from './sign-up-tmpl';
 
 interface Props {

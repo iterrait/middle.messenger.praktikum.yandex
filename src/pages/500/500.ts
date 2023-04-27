@@ -1,6 +1,7 @@
 import Block from '../../core/block';
 
 import Link from '../../components/link/link';
+
 import page500Template from './500-tmpl';
 
 interface Props {

@@ -1,6 +1,7 @@
 import Block from '../../core/block';
 
 import Link from '../../components/link/link';
+
 import page404Template from './404-tmpl';
 
 interface Props {

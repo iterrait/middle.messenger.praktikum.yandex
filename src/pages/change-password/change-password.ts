@@ -2,10 +2,11 @@ import Block from '../../core/block';
 
 import { validateForm } from '../../utils/validator';
 
-import Button from '../../components/Button/Button';
-import Input from '../../components/input/input';
-import changePasswordTemplate from './change-password-tmpl';
+import Button from '../../components/button/button';
 import CloseButton from '../../components/close-button/close-button';
+import Input from '../../components/input/input';
+
+import changePasswordTemplate from './change-password-tmpl';
 
 interface Props {
   oldPasswordInput: Block;

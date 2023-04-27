@@ -3,9 +3,10 @@ import Block from '../../core/block';
 import { validateForm } from '../../utils/validator';
 
 import Button from '../../components/button/button';
-import chatTemplate from './chat-tmpl';
 import ChatPreview from '../../components/chat-preview/chat-preview';
 import Input from '../../components/input/input';
+
+import chatTemplate from './chat-tmpl';
 
 interface Props {
   chatPreview: Block,

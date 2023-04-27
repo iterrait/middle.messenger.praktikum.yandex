@@ -1,7 +1,8 @@
 import Block from '../../core/block';
 
-import mainTemplate from './main-tmpl';
 import Link from '../../components/link/link';
+
+import mainTemplate from './main-tmpl';
 
 interface Props {
   signIn: Block,
