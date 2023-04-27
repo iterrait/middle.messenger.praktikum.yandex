@@ -1,7 +1,7 @@
 import Block from '../../core/block';
 import { validateForm } from '../../utils/validator';
 
-import Button from '../../components/Button/Button';
+import Button from '../../components/button/button';
 import Input from '../../components/input/input';
 import Link from '../../components/link/link';
 
