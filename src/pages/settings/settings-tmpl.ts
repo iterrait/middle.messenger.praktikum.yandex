@@ -1,52 +1,39 @@
 export default `
-  <div class="profile">
+  <div class="settings">
     <form id="profile-form">
-      {{{closeButton}}}
       <div class="form-title">Ваш профиль</div>
       <div class="person">
-        <div class="person__avatar">        
-          {{#if avatar}} 
-          <img src="{{{avatar}}}" alt="" class="avatar">
-          {{else}}
-           <div class="avatar no-image"></div>
-          {{/if}}
+        <div class="person__avatar"> 
+          {{{avatarButton}}}
+          <div class="hidden">{{{avatarFile}}}</div>
         </div>
         <div>
           <div class="person__name">
-            {{#if firstname}}
-            {{firstname}} 
-            {{else}}Имя
-            {{/if}}
-            {{#if lastname}}
-            {{lastname}} 
-            {{else}}Фамилия
-            {{/if}}
+            {{#if user.first_name}}{{user.first_name}}{{else}}Имя{{/if}}
+            {{user.second_name}} 
           </div>
-          <div class="person__login">@
-            {{#if login}}
-            {{login}} 
-            {{else}}Логин
-            {{/if}}
+          <div class="person__login">
+            @{{#if user.login}}{{user.login}}{{/if}}
            </div>
-          <div class="person__description">
-            {{#if description}}
-            {{description}} 
-            {{else}}Описание
-            {{/if}}
-           </div>
+           {{{changePasswordLink}}}
         </div>
       </div>
       <div class="content">
-        {{{avatarInput}}}
+        <div class="hidden">{{{avatarInput}}}</div>
         {{{loginInput}}}
         {{{firstnameInput}}}
         {{{lastnameInput}}}
+        {{{emailInput}}}
         {{{displayNameInput}}}
-        {{{descriptionInput}}}
         {{{phoneInput}}}
         {{{passwordInput}}}
        </div>
+       <div class="footer">
+        {{{cancelButton}}}
         {{{saveButton}}}
+       </div>
+       {{{logoutLink}}}
+       <div class="service-message">{{message}}</div>
     </form>
   </div>
 `;

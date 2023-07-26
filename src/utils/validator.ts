@@ -57,6 +57,10 @@ export const validateInput = (input: HTMLInputElement): string | null => {
     : null;
 }
 
-export const validateForm = (formData: FormData): boolean => {
+export const validateForm = (data: Record<string, any>): boolean => (
+  Object.entries(data).every(([field, value]) => REGEXP[field]?.rule.test(value)) || true
+)
+
+export const validateForm2 = (formData: FormData): boolean => {
   return [...formData.entries()].every(([field, value]) => REGEXP[field]?.rule.test(value as string) || true);
 };

@@ -5,7 +5,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 24px;
+  padding: 24px;
   background-color: $color-basic;
   box-shadow: 0 4px 24px $color-secondary;
 }
@@ -20,4 +20,16 @@ form {
 .form-control {
   width: 100%;
   margin-top: 12px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.service-message {
+  margin-top: 12px;
+  color: $color-success;
 }

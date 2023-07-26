@@ -1,4 +1,4 @@
-import Block from '../../core/block';
+import { Block } from '../../core/block';
 import buttonTemplate from './button-tmpl';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export default class Button extends Block<Props> {
   constructor(props: Props) {
-    super('button', { ...props });
+    super({ ...props });
   }
 
   render(): DocumentFragment {

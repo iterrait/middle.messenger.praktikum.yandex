@@ -5,7 +5,6 @@ export const toCamelCase = (str: string): string =>
   );
 
 export const toSnakeCase = (str: string): string =>
-  // lookahead and lookbehind not working in Safari :(
   str.replace(
     /([^A-Z])([A-Z])/g,
     '$1_$2',

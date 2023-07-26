@@ -15,20 +15,14 @@ export default `
     </div>
   </div>
   <div class="content">
-    <div class="participant">
-      <div class="participant__info"></div>
-      <div class="participant__status">Был(а) в сети недавно</div>
-    </div>
-    <div class="chat__feed"></div>    
-    <form id="chat-form">  
-      <div class="choose-file"></div>
-      {{{fileInput}}}
+   {{{activeChatWithStore}}}
+   {{#if activeChat}}
+   <form id="message-form">  
       {{{messageInput}}}
       {{{sendMessageButton}}}  
-    </form>
+   </form>
+   {{/if}} 
   </div>
-  {{#if isOpenedAddChatPopup}}
-    {{{addChatPopup}}}
-  {{/if}}
+  {{{addChatPopup}}}
  </div>
 `;

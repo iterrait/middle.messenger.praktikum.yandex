@@ -1,8 +1,8 @@
 export default ` 
-  <div class="create-chat-popup popup popup__sm">
-    <form id="create-chat-popup-form" class="popup__form">
-      <div class="form-title">Добавить чат</div>
-       {{{chatTitleInput}}}
+  <div class="add-user-popup popup popup__sm">
+    <form id="add-user-popup-form" class="popup__form">
+      <div class="form-title">Добавить пользователя</div>
+       {{{userIdInput}}}
       <div class="footer">
        {{{cancelButton}}}
        {{{saveButton}}}

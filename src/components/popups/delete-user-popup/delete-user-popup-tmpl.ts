@@ -1,7 +1,7 @@
 export default ` 
-  <div class="add-user-popup popup popup__sm">
-    <form id="add-user-popup-form" class="popup__form">
-      <div class="form-title">Добавить пользователя</div>
+  <div class="popup popup__sm">
+    <form id="delete-user-popup-form" class="popup__form">
+      <div class="form-title">Удалить пользователя</div>
        {{{userIdInput}}}
       <div class="footer">
        {{{cancelButton}}}

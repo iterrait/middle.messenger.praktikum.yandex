@@ -5,6 +5,7 @@ import {
   ISignUpData,
 } from '../types/auth.types';
 import Router from '../core/router';
+import MessagesController from '../controllers/Message-controller';
 
 class AuthController {
   private api = new AuthAPI();
@@ -25,6 +26,8 @@ class AuthController {
     try {
       await this.api.signUp(data);
 
+      await this.fetchUser();
+
       Router.go('/messenger');
     } catch (error) {
       console.log(error);
@@ -36,6 +39,7 @@ class AuthController {
       await this.api.logout();
 
       store.set('user', undefined);
+      MessagesController.closeAll();
 
       Router.go('/');
 
@@ -45,14 +49,9 @@ class AuthController {
   }
 
   async fetchUser() {
-    try {
-      const user = await this.api.getUser();
+    const user = await this.api.getUser();
 
-      store.set('user', user);
-
-    } catch (error) {
-      throw error;
-    }
+    store.set('user', user);
   }
 }
 

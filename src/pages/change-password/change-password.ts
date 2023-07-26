@@ -1,64 +1,70 @@
-import Block from '../../core/block';
-
-import { validateForm } from '../../utils/validator';
-
+import { Block } from '../../core/block';
 import Button from '../../components/button/button';
-import CloseButton from '../../components/close-button/close-button';
-import Input from '../../components/input/input';
-
 import changePasswordTemplate from './change-password-tmpl';
+import Input from '../../components/input/input';
+import router from '../../core/Router';
+import {settingsController} from '../../controllers/settings-controller';
+import {validateForm} from '../../utils/validator';
 
-interface Props {
-  oldPasswordInput: Block;
-  newPasswordInput: Block;
-  confirmNewPasswordInput: Block;
-  closeButton: Block;
-  saveButton: Block;
-  events?: {
-    submit: (e: Event) => void;
-  },
+interface ChangePasswordProps {
+  message?: string | null;
 }
 
-const data = {
-  oldPassword: {
-    label: 'старый пароль',
-    type: 'password',
-    placeholder: 'пароль',
-    name: 'password',
-  },
-  newPassword: {
-    label: 'пароль',
-    type: 'password',
-    placeholder: 'пароль',
-    name: 'new_password',
-  },
-  confirmNewPassword: {
-    label: 'подтверждение пароля',
-    type: 'password',
-    placeholder: 'пароль',
-    name: 'confirm_password',
-  },
-  button: {
-    text: 'Сохранить',
-    attr: {
-      type: 'submit',
-      class: 'button-primary',
-    },
-  },
-  closeButton: {
-    attr: {
-      class: 'close-button',
-    },
-  },
-};
+export class BaseChangePasswordPage extends Block<ChangePasswordProps> {
+  constructor(props: ChangePasswordProps) {
+    super( { ...props });
+  }
 
-class ChangePasswordPage extends Block<Props> {
-  constructor(props: Props) {
-    const events = {
-      submit: (e: Event) => this.onSubmit(e),
-    };
-    super('div', { ...props, events });
-    this.element?.classList.add('change-password');
+  init() {
+    this.children.oldPasswordInput = new Input({
+      label: 'старый пароль',
+      type: 'password',
+      placeholder: 'пароль',
+      name: 'oldPassword',
+      id: 'old-password',
+    });
+
+    this.children.newPasswordInput = new Input({
+      label: 'пароль',
+      type: 'password',
+      placeholder: 'пароль',
+      name: 'newPassword',
+      id: 'new_password',
+    });
+
+    this.children.confirmNewPasswordInput = new Input({
+      label: 'подтверждение пароля',
+      type: 'password',
+      placeholder: 'пароль',
+      name: 'confirm_password',
+      id: 'confirm_password',
+    });
+
+    this.children.cancelButton = new Button({
+      text: 'Назад',
+      attr: {
+        type: 'button',
+        class: 'button-secondary',
+      },
+      events: {
+        click: () => this.onCancel(),
+      },
+    });
+
+    this.children.saveButton = new Button({
+      text: 'Сохранить',
+      attr: {
+        type: 'submit',
+        class: 'button-primary',
+      },
+      events: {
+        click: (event) => this.onSubmit(event),
+      },
+    });
+  }
+
+  onCancel(): void {
+    router.back();
   }
 
   render(): DocumentFragment {
@@ -68,24 +74,29 @@ class ChangePasswordPage extends Block<Props> {
   onSubmit(event: Event): void {
     event.preventDefault();
 
-    const form = document.getElementById('change-password-form') as HTMLFormElement;
-    const formData = new FormData(form);
-    const obj: Record<string, any> = {};
+    const changePasswordForm = document.getElementById('change-password-form') as HTMLFormElement;
+    const formData = new FormData(changePasswordForm);
 
-    validateForm(formData);
+    if (!changePasswordForm) {
+      return;
+    }
+
+    const obj: Record<string, any> = {};
 
     for (const pair of formData.entries()) {
       obj[pair[0]] = pair[1];
     }
 
-    console.log('change-password-form', obj);
+    validateForm(obj);
+
+    if (validateForm(obj)) {
+      settingsController.changePassword(obj)
+        .then(() => {
+          this.setProps({
+            ...this.props,
+            message: 'Изменения успешно сохранены',
+          });
+        });
+    }
   }
 }
-
-export default new ChangePasswordPage({
-  oldPasswordInput: new Input(data.oldPassword),
-  newPasswordInput: new Input(data.newPassword),
-  confirmNewPasswordInput: new Input(data.confirmNewPassword),
-  closeButton: new CloseButton(data.closeButton),
-  saveButton: new Button(data.button),
-});

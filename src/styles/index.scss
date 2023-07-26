@@ -1,13 +1,15 @@
 @import './src/styles/form';
 @import './src/styles/general';
+@import './src/styles/components/active-chat';
 @import './src/styles/components/chat-preview';
 @import './src/styles/components/close-button';
 @import './src/styles/components/button';
+@import './src/styles/components/popup';
 @import './src/styles/pages/change-password';
-@import './src/styles/pages/chat';
+@import './src/styles/pages/chat-list';
 @import './src/styles/components/input';
 @import './src/styles/components/link';
-@import './src/styles/pages/profile';
+@import './src/styles/pages/settings';
 @import './src/styles/pages/sign-in';
 @import './src/styles/pages/sign-up';
 @import './src/styles/pug';

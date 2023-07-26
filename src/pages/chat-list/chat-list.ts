@@ -1,12 +1,16 @@
+import { CurrentChatWithStore } from '../../components/active-chat/active-chat';
 import BaseLink from '../../components/link/link';
 import { Block } from '../../core/block';
 import Button from '../../components/button/button';
-import ChatsController from '../../controllers/chats-controllers';
+import ChatsController from '../../controllers/chats-controller';
+import { ChatEntity } from '../../types/chat.types';
+import { ChatPreviewWithStore} from '../../components/chat-preview/chat-preview';
 import chatListTemplate from './chat-list-tmpl';
 import { CreateChatPopup } from '../../components/popups/create-chat-popup/create-chat-popup';
 import Input from '../../components/input/input';
+import messagesController from '../../controllers/Message-controller';
 import store, { State, withStore } from '../../core/Store';
-import {BaseChat} from '../../components/chat/chat';
+import { validateForm } from '../../utils/validator';
 
 interface ChatProps {
   fileInput: Block,
@@ -15,20 +19,20 @@ interface ChatProps {
   profileLink: Block;
   addChat: Block;
   addChatPopup: Block;
-  isOpenedAddChatPopup: boolean;
   chats: Block[],
+  activeChat?: ChatEntity | null;
+  activeChatWithStore: Block;
 }
 
-class BaseChatListPage extends Block {
+class BaseChatListPage extends Block<ChatProps> {
 
   constructor(props: ChatProps) {
     super({ ...props });
+
     ChatsController.getChatList({}).then();
   }
 
   init() {
-    this.props.isOpenedAddChatPopup = false;
-
     this.children.profileLink = new BaseLink({
       text: 'Перейти в профиль',
       attr: {
@@ -37,22 +41,7 @@ class BaseChatListPage extends Block {
       },
     });
 
-    this.children.fileInput = new Input({
-      attr: {
-        class: 'hidden',
-      },
-      name: 'file',
-      type: 'file',
-    });
-
-    this.children.messageInput = new Input({
-      attr: {
-        class: 'message',
-      },
-      name: 'message',
-      type: 'text',
-      placeholder: 'Введите сообщение',
-    });
+    this.children.activeChatWithStore = new CurrentChatWithStore({});
 
     this.children.addChat = new Button({
       text: 'Добавить чат',
@@ -70,20 +59,12 @@ class BaseChatListPage extends Block {
       attr: {
         class: 'send-message',
       },
-    });
-
-    this.children.addChatPopup = new CreateChatPopup({
       events: {
-        onSubmitClick: () => this.onSubmitCreateChatPopup(),
-        onCancelClick: () => this.onCancelCreateChatPopup(),
-      }
+        click: (event) => this.onSendMessage(event),
+      },
     });
-  }
 
-  onChatClick(event: Event): void {
-    event.preventDefault();
-
-    console.log('onChatClick event', event);
+    this.setMessageInput();
   }
 
   onSubmitCreateChatPopup(): void {
@@ -95,42 +76,85 @@ class BaseChatListPage extends Block {
   }
 
   hideCreateChatPopup(): void {
+    delete this.children.addChatPopup;
+
     this.setProps({
       ...this.props,
-      isOpenedAddChatPopup: false,
     });
   }
 
   onAddChat(): void {
+    this.children.addChatPopup = new CreateChatPopup({
+      events: {
+        onSubmitClick: () => this.onSubmitCreateChatPopup(),
+        onCancelClick: () => this.onCancelCreateChatPopup(),
+      }
+    });
+
     this.setProps({
       ...this.props,
-      isOpenedAddChatPopup: true,
     });
   }
 
-  getChats(): void {
+  getChatPreviews(): void {
     const blocks: Block[] = [];
-    store.getState().chats.map((item) => {
-      const chatBlock = new BaseChat({ ...item })
+
+    store.getState().chats?.map((item) => {
+      const chatBlock = new ChatPreviewWithStore({
+        chat: item,
+        events: {
+          click: (event) => this.onChatClick(event, this, item),
+        },
+      })
       blocks.push(chatBlock);
     });
 
     this.children.chats = blocks;
   }
 
-  render(): DocumentFragment {
-    this.getChats();
+  onSendMessage(event: Event): void {
+    event.preventDefault();
 
+    const sendForm = document.getElementById('message-form') as HTMLFormElement;
+    const formData = new FormData(sendForm);
+
+    if (validateForm(formData)) {
+      messagesController.sendMessage(this.props.activeChat?.id!, formData.get('message') as string);
+      this.setMessageInput();
+    }
+  }
+
+  setMessageInput(): void {
+    this.children.messageInput = new Input({
+      attr: {
+        class: 'message-input',
+      },
+      name: 'message',
+      type: 'text',
+      placeholder: 'Введите сообщение',
+    });
+  }
+
+  onChatClick(event: Event, block: Block, item: ChatEntity): void {
+    event.preventDefault();
+
+    store.set('activeChat', { ...item});
+  }
+
+  render(): DocumentFragment {
     return this.compile(chatListTemplate, this.props);
   }
 
-  onSubmit(event: Event): void {
-    event.preventDefault();
+  componentDidUpdate() {
+    this.getChatPreviews();
+
+    return true;
   }
 }
 
 function mapStateToProps(state: State) {
   return {
+    activeChat: state.activeChat,
     chats: state.chats,
     ...state.user,
   };

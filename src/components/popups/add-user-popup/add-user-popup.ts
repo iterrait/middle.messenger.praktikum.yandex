@@ -1,31 +1,29 @@
 import { Block } from '../../../core/block';
 import Button from '../../button/button';
 import ChatsController from '../../../controllers/chats-controller';
-import createChatPopupTemplate from './create-chat-popup-tmpl';
-import { CreateChatEntity } from '../../../types/chat.types';
+import addUserPopupTemplate from './add-user-popup-tmpl';
 import Input from '../../input/input';
+import store from '../../../core/Store';
+import {UserData} from '../../../types/chat.types';
 
-interface CreateChatPopupProps {
-  chatTitleInput?: Block;
-  saveButton?: Block;
-  cancelButton?: Block;
+interface AddUserPopupProps {
   events?: {
     onCancelClick?: Function,
     onSubmitClick?: Function,
   }
 }
 
-export class CreateChatPopup extends Block<CreateChatPopupProps> {
-  constructor(props: CreateChatPopupProps) {
+export class BaseAddUserPopup extends Block<AddUserPopupProps> {
+  constructor(props: AddUserPopupProps) {
     super( { ...props });
   }
 
   init() {
-    this.children.chatTitleInput = new Input({
-      label: 'Название чата',
+    this.children.userIdInput = new Input({
+      label: 'ID user',
       type: 'text',
-      placeholder: 'Введите название чата',
-      name: 'title',
+      placeholder: 'Введите user ID',
+      name: 'userId',
     });
 
     this.children.cancelButton = new Button({
@@ -52,7 +50,7 @@ export class CreateChatPopup extends Block<CreateChatPopupProps> {
   }
 
   render(): DocumentFragment {
-    return this.compile(createChatPopupTemplate, {
+    return this.compile(addUserPopupTemplate, {
       ...this.props,
     });
   }
@@ -60,21 +58,25 @@ export class CreateChatPopup extends Block<CreateChatPopupProps> {
   async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
 
-    const createChatForm = document.getElementById('create-chat-popup-form') as HTMLFormElement;
+    const addUserForm = document.getElementById('add-user-popup-form') as HTMLFormElement;
 
-    if(!createChatForm){
+    if(!addUserForm){
       return;
     }
 
-    const formData = new FormData(createChatForm);
-    const data: CreateChatEntity = {
-      title: formData.get('title') as string,
+    const formData = new FormData(addUserForm);
+    const chatId = store.getState().activeChat.id;
+
+    const data: UserData = {
+      chatId: chatId,
+      users: [formData.get('userId') as Number],
     };
 
-    await ChatsController.createChat(data).then(() => {
-      ChatsController.getChatList({}).then(() => {
+    await ChatsController.addUserToChat(data).then(() => {
+      ChatsController.getChatUsers(chatId).then(() => {
         this.props.events?.onSubmitClick();
       });
     });
   }
 }
+

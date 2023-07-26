@@ -1,20 +1,20 @@
 import { Block } from '../../../core/block';
 import Button from '../../button/button';
 import ChatsController from '../../../controllers/chats-controller';
-import addUserPopupTemplate from './add-user-popup-tmpl';
+import deleteUserPopupTemplate from './delete-user-popup-tmpl';
 import Input from '../../input/input';
 import store from '../../../core/Store';
-import {AddUser} from '../../../types/chat.types';
+import {UserData} from '../../../types/chat.types';
 
-interface AddUserPopupProps {
+interface DeleteUserPopupProps {
   events?: {
     onCancelClick?: Function,
     onSubmitClick?: Function,
   }
 }
 
-export class BaseAddUserPopup extends Block<AddUserPopupProps> {
-  constructor(props: AddUserPopupProps) {
+export class BaseDeleteUserPopup extends Block<DeleteUserPopupProps> {
+  constructor(props: DeleteUserPopupProps) {
     super( { ...props });
   }
 
@@ -50,7 +50,7 @@ export class BaseAddUserPopup extends Block<AddUserPopupProps> {
   }
 
   render(): DocumentFragment {
-    return this.compile(addUserPopupTemplate, {
+    return this.compile(deleteUserPopupTemplate, {
       ...this.props,
     });
   }
@@ -58,22 +58,22 @@ export class BaseAddUserPopup extends Block<AddUserPopupProps> {
   async onSubmit(event: Event): Promise<void> {
     event.preventDefault();
 
-    const addUserForm = document.getElementById('add-user-popup-form') as HTMLFormElement;
+    const deleteUserForm = document.getElementById('delete-user-popup-form') as HTMLFormElement;
 
-    if(!addUserForm){
+    if(!deleteUserForm){
       return;
     }
 
-    const formData = new FormData(addUserForm);
+    const formData = new FormData(deleteUserForm);
     const chatId = store.getState().activeChat.id;
 
-    const data: AddUser = {
+    const data: UserData = {
       chatId: chatId,
       users: [formData.get('userId') as Number],
     };
 
-    await ChatsController.addUserToChat(data).then(() => {
-      ChatsController.getChatUsers(chatId).then(() => {
+    await ChatsController.deleteUserFromChat(data).then(() => {
+      ChatsController.getChatList({}).then(() => {
         this.props.events?.onSubmitClick();
       });
     });

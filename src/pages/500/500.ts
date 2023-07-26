@@ -1,6 +1,6 @@
-import Block from '../../core/block';
+import { Block } from '../../core/block';
 
-import Link from '../../components/link/link';
+import BaseLink from '../../components/link/link';
 
 import page500Template from './500-tmpl';
 
@@ -15,7 +15,7 @@ const data = {
   link: {
     text: 'Назад к чатам',
     attr: {
-      href: '/chat.html',
+      href: '/chat',
       class: 'link',
     },
   },
@@ -23,7 +23,7 @@ const data = {
 
 class Page500 extends Block<Props> {
   constructor(props: Props) {
-    super('div', props);
+    super( { ...props });
     this.element?.classList.add('plug');
   }
 
@@ -33,5 +33,5 @@ class Page500 extends Block<Props> {
 }
 
 export default new Page500({
-  goToChatLink: new Link(data.link),
+  goToChatLink: new BaseLink(data.link),
 });
