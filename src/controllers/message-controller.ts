@@ -11,7 +11,7 @@ class MessagesController {
       return;
     }
 
-    const userId = store.getState().user.id;
+    const userId = store.getState().user?.id;
     const wsTransport = new WsTransport(`${userId}/${chatId}/${token}`);
 
     await wsTransport.connect();
@@ -40,7 +40,7 @@ class MessagesController {
     }
 
     let newMessages: MessageEntity[] = [];
-    const userId = store.getState().user.id;
+    const userId = store.getState().user?.id;
     const currentMessages = store.getState().messages[chatId] ?? [];
 
     if (Array.isArray(messages)) {

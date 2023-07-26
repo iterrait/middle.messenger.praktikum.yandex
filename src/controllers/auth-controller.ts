@@ -5,7 +5,7 @@ import {
   ISignUpData,
 } from '../types/auth.types';
 import Router from '../core/router';
-import MessagesController from '../controllers/Message-controller';
+import MessagesController from '../controllers/message-controller';
 
 class AuthController {
   private api = new AuthAPI();

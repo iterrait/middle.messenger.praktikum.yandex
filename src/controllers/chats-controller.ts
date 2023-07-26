@@ -5,7 +5,7 @@ import {
 } from '../types/chat.types';
 import { ChatApi } from '../api/chat-api';
 import { store } from '../core/Store';
-import messagesController from '../controllers/Message-controller';
+import messagesController from '../controllers/message-controller';
 
 class ChatsController {
   private api = new ChatApi();

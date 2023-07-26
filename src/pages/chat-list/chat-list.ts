@@ -8,7 +8,7 @@ import { ChatPreviewWithStore} from '../../components/chat-preview/chat-preview'
 import chatListTemplate from './chat-list-tmpl';
 import { CreateChatPopup } from '../../components/popups/create-chat-popup/create-chat-popup';
 import Input from '../../components/input/input';
-import messagesController from '../../controllers/Message-controller';
+import messagesController from '../../controllers/message-controller';
 import { State, store, withStore } from '../../core/Store';
 import { validateForm } from '../../utils/validator';
 
