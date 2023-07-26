@@ -1,6 +1,6 @@
 import { IPasswordData, IProfileData } from '../types';
 import { SettingsApi } from '../api/settings-api';
-import store from '../core/Store';
+import { store } from '../core/Store';
 
 class SettingsController {
   private api = new SettingsApi();

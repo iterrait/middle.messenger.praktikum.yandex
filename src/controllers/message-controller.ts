@@ -1,5 +1,5 @@
 import { WsTransport } from '../core/ws-transport';
-import store from '../core/Store';
+import { store } from '../core/Store';
 import { MessageEntity } from '../types/chat.types';
 import { WsTransportEvents } from '../types/websocket.types';
 

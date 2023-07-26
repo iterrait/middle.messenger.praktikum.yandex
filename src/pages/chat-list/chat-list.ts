@@ -9,7 +9,7 @@ import chatListTemplate from './chat-list-tmpl';
 import { CreateChatPopup } from '../../components/popups/create-chat-popup/create-chat-popup';
 import Input from '../../components/input/input';
 import messagesController from '../../controllers/Message-controller';
-import store, { State, withStore } from '../../core/Store';
+import { State, store, withStore } from '../../core/Store';
 import { validateForm } from '../../utils/validator';
 
 interface ChatProps {

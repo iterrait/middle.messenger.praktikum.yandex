@@ -1,5 +1,5 @@
 import { AuthAPI } from '../api/auth-api';
-import store from '../core/Store';
+import { store } from '../core/Store';
 import {
   ISignInData,
   ISignUpData,

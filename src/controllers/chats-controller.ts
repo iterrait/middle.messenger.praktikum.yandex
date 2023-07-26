@@ -1,10 +1,10 @@
 import {
-  UserData, ChatEntity,
+  UserData,
   ChatListSearchData,
   CreateChatEntity,
 } from '../types/chat.types';
 import { ChatApi } from '../api/chat-api';
-import store from '../core/Store';
+import { store } from '../core/Store';
 import messagesController from '../controllers/Message-controller';
 
 class ChatsController {

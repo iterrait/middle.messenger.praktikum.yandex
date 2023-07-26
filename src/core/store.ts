@@ -29,7 +29,7 @@ class Store extends EventBus {
   }
 }
 
-const store = new Store();
+export const store = new Store();
 
 export function withStore(mapStateToProps: (state: State) => any) {
   return (Component: typeof Block) => {

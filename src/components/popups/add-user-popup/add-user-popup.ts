@@ -3,8 +3,8 @@ import Button from '../../button/button';
 import ChatsController from '../../../controllers/chats-controller';
 import addUserPopupTemplate from './add-user-popup-tmpl';
 import Input from '../../input/input';
-import store from '../../../core/Store';
-import {UserData} from '../../../types/chat.types';
+import { store } from '../../../core/Store';
+import { UserData } from '../../../types/chat.types';
 
 interface AddUserPopupProps {
   events?: {

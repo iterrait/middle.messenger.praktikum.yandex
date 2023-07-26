@@ -2,7 +2,7 @@ import { Block } from '../../core/block';
 import Button from '../../components/button/button';
 import overflowMenuTemplate from './overflow-menu-tmpl';
 import { BaseAddUserPopup } from '../popups/add-user-popup/add-user-popup';
-import store, { State, withStore } from '../../core/Store';
+import { State, store, withStore } from '../../core/Store';
 import { BaseDeleteUserPopup } from '../popups/delete-user-popup/delete-user-popup';
 import ChatsController from '../../controllers/chats-controller';
 import { ChatEntity } from '../../types/chat.types';
