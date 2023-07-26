@@ -10,4 +10,5 @@
 
 ##Pull Requests
 - sprint 2: https://github.com/iterrait/middle.messenger.praktikum.yandex/pull/4
+- sprint 3: https://github.com/iterrait/middle.messenger.praktikum.yandex/pull/5
 
