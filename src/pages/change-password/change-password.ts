@@ -2,7 +2,7 @@ import { Block } from '../../core/block';
 import Button from '../../components/button/button';
 import changePasswordTemplate from './change-password-tmpl';
 import Input from '../../components/input/input';
-import router from '../../core/Router';
+import router from '../../core/router';
 import {settingsController} from '../../controllers/settings-controller';
 import {validateForm} from '../../utils/validator';
 
