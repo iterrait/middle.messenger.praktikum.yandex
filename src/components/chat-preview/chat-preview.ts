@@ -1,24 +1,14 @@
-import Block from '../../core/block';
-import chatPreviewTemplate from './chat-preview-tmpl';
+import { Block } from '../../core/block';
+import { ChatEntity } from '../../types/chat.types';
+import chatTemplate from './chat-tmpl';
 
-interface Props {
-  firstname: string,
-  lastname: string,
-  message: string,
-  time: string,
-  count: number,
-  events?: {
-    click?: (e: Event) => void;
-  },
-}
+export class BaseChat extends Block<ChatEntity> {
 
-export default class ChatPreview extends Block<Props> {
-  constructor(props: Props) {
-    super('div', { ...props });
-    this.element?.classList.add('chat-preview');
+  constructor(props: ChatEntity) {
+    super({ ...props });
   }
 
   render(): DocumentFragment {
-    return this.compile(chatPreviewTemplate, this.props);
+    return this.compile(chatTemplate, { ...this.props});
   }
 }
