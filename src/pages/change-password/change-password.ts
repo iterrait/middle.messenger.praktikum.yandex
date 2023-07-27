@@ -3,8 +3,9 @@ import Button from '../../components/button/button';
 import changePasswordTemplate from './change-password-tmpl';
 import Input from '../../components/input/input';
 import router from '../../core/router';
-import {settingsController} from '../../controllers/settings-controller';
-import {validateForm} from '../../utils/validator';
+import { settingsController } from '../../controllers/settings-controller';
+import { validateForm } from '../../utils/validator';
+import { getFormData } from '../../utils/convert.utils';
 
 interface ChangePasswordProps {
   message?: string | null;
@@ -21,7 +22,7 @@ export class BaseChangePasswordPage extends Block<ChangePasswordProps> {
       type: 'password',
       placeholder: 'пароль',
       name: 'oldPassword',
-      id: 'old-password',
+      id: 'old_password',
     });
 
     this.children.newPasswordInput = new Input({
@@ -36,7 +37,7 @@ export class BaseChangePasswordPage extends Block<ChangePasswordProps> {
       label: 'подтверждение пароля',
       type: 'password',
       placeholder: 'пароль',
-      name: 'confirm_password',
+      name: 'confirmPassword',
       id: 'confirm_password',
     });
 
@@ -75,19 +76,12 @@ export class BaseChangePasswordPage extends Block<ChangePasswordProps> {
     event.preventDefault();
 
     const changePasswordForm = document.getElementById('change-password-form') as HTMLFormElement;
-    const formData = new FormData(changePasswordForm);
 
     if (!changePasswordForm) {
       return;
     }
 
-    const obj: Record<string, any> = {};
-
-    for (const pair of formData.entries()) {
-      obj[pair[0]] = pair[1];
-    }
-
-    validateForm(obj);
+    const obj = getFormData(new FormData(changePasswordForm));
 
     if (validateForm(obj)) {
       settingsController.changePassword(obj)

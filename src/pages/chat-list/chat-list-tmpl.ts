@@ -18,8 +18,8 @@ export default `
    {{{activeChatWithStore}}}
    {{#if activeChat}}
    <form id="message-form">  
-      {{{messageInput}}}
-      {{{sendMessageButton}}}  
+     {{{messageInput}}}
+     {{{sendMessageButton}}}  
    </form>
    {{/if}} 
   </div>

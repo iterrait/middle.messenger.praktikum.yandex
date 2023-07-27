@@ -11,6 +11,7 @@ import Input from '../../components/input/input';
 import messagesController from '../../controllers/message-controller';
 import { State, store, withStore } from '../../core/Store';
 import { validateForm } from '../../utils/validator';
+import { getFormData } from '../../utils/convert.utils';
 
 interface ChatProps {
   fileInput: Block,
@@ -22,6 +23,7 @@ interface ChatProps {
   chats: Block[],
   activeChat?: ChatEntity | null;
   activeChatWithStore: Block;
+  serviceMessage: string | null;
 }
 
 class BaseChatListPage extends Block<ChatProps> {
@@ -118,7 +120,9 @@ class BaseChatListPage extends Block<ChatProps> {
     const sendForm = document.getElementById('message-form') as HTMLFormElement;
     const formData = new FormData(sendForm);
 
-    if (validateForm(formData)) {
+    const obj = getFormData(new FormData(sendForm));
+
+    if (validateForm(obj)) {
       messagesController.sendMessage(this.props.activeChat?.id!, formData.get('message') as string);
       this.setMessageInput();
     }
@@ -131,6 +135,7 @@ class BaseChatListPage extends Block<ChatProps> {
       },
       name: 'message',
       type: 'text',
+      id: 'message',
       placeholder: 'Введите сообщение',
     });
   }

@@ -28,11 +28,15 @@ export const REGEXP: Record<string, Regexp> = {
     rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
     error: 'Пароль должен быть от 8 до 40 символов, хотя бы одна заглавная буква и цифра',
   },
-  new_password: {
+  oldPassword: {
+    rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
+    error: 'Пароль должен быть от 8 до 40 символов, хотя бы одна заглавная буква и цифра',
+  },
+  newPassword: {
     rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
     error: 'Новый пароль введен некорректно',
   },
-  confirm_password: {
+  confirmPassword: {
     rule: /^(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,40}$/,
     error: 'Подтверждение пароля введено некорректно',
   },
@@ -58,9 +62,5 @@ export const validateInput = (input: HTMLInputElement): string | null => {
 }
 
 export const validateForm = (data: Record<string, any>): boolean => (
-  Object.entries(data).every(([field, value]) => REGEXP[field]?.rule.test(value)) || true
-)
-
-export const validateForm2 = (formData: FormData): boolean => {
-  return [...formData.entries()].every(([field, value]) => REGEXP[field]?.rule.test(value as string) || true);
-};
+  Object.entries(data).every(([field, value]) => REGEXP[field]?.rule.test(value))
+);

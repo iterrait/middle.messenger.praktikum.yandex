@@ -7,8 +7,9 @@ import {validateForm} from '../../utils/validator';
 import BaseLink from '../../components/link/link';
 import { State, withStore } from '../../core/Store';
 import router from '../../core/router';
-import {AvatarButtonWithStore} from '../../components/avatar-button/avatar-button';
-import {settingsController} from '../../controllers/settings-controller';
+import { AvatarButtonWithStore } from '../../components/avatar-button/avatar-button';
+import { settingsController } from '../../controllers/settings-controller';
+import { getFormData } from '../../utils/convert.utils';
 
 interface SettingsProps {
   user?: {
@@ -174,26 +175,25 @@ export class BaseSettingsPage extends Block<SettingsProps> {
     event.preventDefault();
 
     const profileForm = document.getElementById('profile-form') as HTMLFormElement;
-    const formData = new FormData(profileForm);
 
     if (!profileForm) {
       return;
     }
 
-    const obj: Record<string, any> = {};
-
-    for (const pair of formData.entries()) {
-      obj[pair[0]] = pair[1];
-    }
-
-    validateForm(obj);
+    const obj = getFormData(new FormData(profileForm));
+    delete(obj.avatar);
 
     if (validateForm(obj)) {
       settingsController.updateProfile(obj).then(() => {
         this.setProps({
           ...this.props,
           message: 'Изменения успешно сохранены',
-        })
+        });
+      });
+    } else {
+      this.setProps({
+        ...this.props,
+        message: 'Проверьте правильность заполнения полей',
       });
     }
   }

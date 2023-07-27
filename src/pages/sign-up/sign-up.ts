@@ -5,6 +5,7 @@ import Input from '../../components/input/input';
 import { ISignUpData } from '../../types/auth.types';
 import signUpTemplate from './sign-up-tmpl';
 import { validateForm } from '../../utils/validator';
+import { getFormData } from '../../utils/convert.utils';
 
 interface SignUpProps {
   confirmationPasswordInput: Block;
@@ -93,25 +94,14 @@ export class SignUpPage extends Block<SignUpProps> {
 
     const signUpForm = document.getElementById('sign-up-form') as HTMLFormElement;
 
-    if(!signUpForm){
+    if (!signUpForm) {
       return;
     }
 
-    const formData = new FormData(signUpForm);
-    const data: ISignUpData = {
-      first_name: formData.get('first_name') as string,
-      second_name: formData.get('second_name') as string,
-      login: formData.get('login') as string,
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-      phone: formData.get('phone') as string,
-    };
+    const obj = getFormData(new FormData(signUpForm)) as ISignUpData;
 
-    console.log('data', data);
-    console.log('validateForm(data)', validateForm(data));
-
-    if (validateForm(data)) {
-      AuthController.signUp(data).then(() => {});
+    if (validateForm(obj)) {
+      AuthController.signUp(obj).then();
     }
   }
 }

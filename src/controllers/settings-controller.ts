@@ -11,7 +11,7 @@ class SettingsController {
       store.set('user', user);
 
     } catch (error) {
-      throw error;
+      console.log('updateProfile error', error);
     }
   }
 
@@ -19,7 +19,7 @@ class SettingsController {
     try {
       await this.api.changePassword(data);
     } catch (error) {
-      throw error;
+      console.log('changePassword error', error);
     }
   }
 
@@ -29,7 +29,7 @@ class SettingsController {
       store.set('user', user);
 
     } catch (error) {
-      throw error;
+      console.log('changeAvatar error', error);
     }
   }
 }

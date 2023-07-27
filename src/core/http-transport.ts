@@ -7,9 +7,29 @@ export enum Method {
 }
 
 type Options = {
-  method: Method;
-  data?: any;
-};
+  headers?: Record<any, any>,
+  data?: any,
+}
+
+type RequestOptions = {
+  method: string,
+  headers?: Record<any, any>,
+  data?: any,
+}
+
+
+function queryStringify(data) {
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object');
+  }
+
+  const keys = Object.keys(data);
+  return keys.reduce((result, key, index) => {
+    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+  }, '?');
+}
+
+type HTTPMethod<Response = void> = (url: string, options?: unknown) => Promise<unknown>;
 
 export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
@@ -19,40 +39,33 @@ export class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/', data?: any): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, { method: Method.Get, data });
-  }
-
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
-      method: Method.Post,
-      data,
+  get: HTTPMethod = (url: string, options: Options) => {
+    return this.request(options?.data
+      ? `${this.endpoint + url}${queryStringify(options?.data)}`
+      : (this.endpoint + url), {
+      ...options,
+      method: Method.Get
     });
+  };
+
+
+  post: HTTPMethod = (url: string, options: Options) => {
+    return this.request(this.endpoint + url, { ...options, method: Method.Post });
+  };
+
+  put: HTTPMethod = (url: string, options: Options, headers = {}) => {
+    return this.request(this.endpoint + url, { ...options, method: Method.Put, headers });
+  };
+
+  patch: HTTPMethod = (url: string, options: Options) => {
+    return this.request(this.endpoint + url, { ...options, method: Method.Patch });
+  };
+
+  delete: HTTPMethod = (url: string, options: Options) => {
+    return this.request(this.endpoint + url, { ...options, method: Method.Delete });
   }
 
-  public put<Response = void>(path: string, data: unknown,  headers = {}): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
-      method: Method.Put,
-      data,
-      headers,
-    });
-  }
-
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
-      method: Method.Patch,
-      data,
-    });
-  }
-
-  public delete<Response>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
-      method: Method.Delete,
-      data,
-    });
-  }
-
-  private request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
+  private request = (url: string, options: RequestOptions) => {
     const { method, data } = options;
 
     return new Promise((resolve, reject) => {
@@ -70,9 +83,9 @@ export class HTTPTransport {
         }
       };
 
-      xhr.onabort = () => reject({reason: 'abort'});
-      xhr.onerror = () => reject({reason: 'network error'});
-      xhr.ontimeout = () => reject({reason: 'timeout'});
+      xhr.onabort = () => reject({ reason: 'abort' });
+      xhr.onerror = () => reject({ reason: 'network error' });
+      xhr.ontimeout = () => reject({ reason: 'timeout' });
 
       if (!(data instanceof FormData)) {
         xhr.setRequestHeader('Content-Type', 'application/json');

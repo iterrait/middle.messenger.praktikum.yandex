@@ -1,6 +1,5 @@
 import {
   UserData,
-  ChatListSearchData,
   CreateChatEntity,
 } from '../types/chat.types';
 import { ChatApi } from '../api/chat-api';
@@ -10,18 +9,18 @@ import messagesController from '../controllers/message-controller';
 class ChatsController {
   private api = new ChatApi();
 
-  async getChatList(options: ChatListSearchData): Promise<void>  {
+  async getChatList(): Promise<void>  {
     try {
-      const chats = await this.api.getChatLists(options);
+      this.api.getChatLists()
+        .then((chats) => {
+          chats.forEach((item) => {
+            this.connectWithChat(item.id);
+          });
 
-      chats.forEach((item) => {
-        this.connectWithChat(item.id);
-      });
-
-      store.set('chats', chats);
+          store.set('chats', chats);
+        });
     } catch (error) {
       console.log('getChatList error', error);
-      throw error;
     }
   }
 
@@ -39,7 +38,6 @@ class ChatsController {
       await this.api.createChat(options);
     } catch (error) {
       console.log('createChat error', error);
-      throw error;
     }
   }
 
@@ -48,7 +46,6 @@ class ChatsController {
       await this.api.addUserToChat(data);
     } catch (error) {
       console.log('addUserToChat error', error);
-      throw error;
     }
   }
 
@@ -57,7 +54,6 @@ class ChatsController {
       await this.api.deleteUserFromChat(data);
     } catch (error) {
       console.log('deleteUserFromChat error', error);
-      throw error;
     }
   }
 
@@ -67,7 +63,6 @@ class ChatsController {
       store.set('activeChat', null);
     } catch (error) {
       console.log('deleteChat error', error);
-      throw error;
     }
   }
 
@@ -77,7 +72,6 @@ class ChatsController {
       store.set('activeChatUsers', users);
     } catch (error) {
       console.log('getChatUsers error', error);
-      throw error;
     }
   }
 
@@ -88,7 +82,6 @@ class ChatsController {
       return response.token;
     } catch (e) {
       console.error('getToken error', e);
-      throw e;
     }
   }
 
@@ -98,7 +91,6 @@ class ChatsController {
       store.set(`chats.${chatId}.unread_count`, unread.unread_count);
     } catch (error) {
       console.log('getNewMessages error', error);
-      throw error;
     }
   }
 }

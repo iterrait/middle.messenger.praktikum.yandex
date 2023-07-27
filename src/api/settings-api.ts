@@ -5,15 +5,15 @@ export class SettingsApi extends API {
   constructor() {
     super('/user');
   }
-  update(profile: ISettingsData): Promise<string> {
-    return this.http.put('/profile', profile);
+  update(profile: ISettingsData) {
+    return this.http.put('/profile', { data: profile });
   }
 
-  changePassword(data: IPasswordData): Promise<string> {
-    return this.http.put('/password', data);
+  changePassword(data: IPasswordData) {
+    return this.http.put('/password', { data });
   }
 
-  changeAvatar(data: FormData): Promise<string> {
-    return this.http.put('/profile/avatar', data);
+  changeAvatar(data: FormData) {
+    return this.http.put('/profile/avatar', { data });
   }
 }

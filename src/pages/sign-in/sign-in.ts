@@ -6,6 +6,7 @@ import Input from '../../components/input/input';
 import { ISignInData } from '../../types/auth.types';
 import signInTemplate from './sign-in-tmpl';
 import { validateForm } from '../../utils/validator';
+import { getFormData } from '../../utils/convert.utils';
 
 interface SignInProps {
   loginInput: Block;
@@ -57,16 +58,16 @@ export class SignInPage extends Block<SignInProps> {
   onSubmit(event: Event): void {
     event.preventDefault();
 
-    let data: ISignInData = {
-      login: '',
-      password: '',
-    };
+    const signInForm = document.getElementById('sign-in-form') as HTMLFormElement;
 
-    [...document.querySelectorAll('input')]
-      .map((child) => (data[child.name] = child.value));
+    if (!signInForm) {
+      return;
+    }
 
-    if (validateForm(data)) {
-      AuthController.signIn(data).then();
+    const obj = getFormData(new FormData(signInForm)) as ISignInData;
+
+    if (validateForm(obj)) {
+      AuthController.signIn(obj).then();
     }
   }
 
