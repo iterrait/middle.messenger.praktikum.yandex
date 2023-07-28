@@ -1,35 +1,36 @@
-import Block from '../../core/block';
-
+import { Block } from '../../core/block';
+import inputTemplate from './input-tmpl';
 import { validateInput } from '../../utils/validator';
 
-import inputTemplate from './input-tmpl';
-
-interface Props {
+interface InputProps {
   attr?: Record<string, string>,
   type: string;
   name: string;
+  id?: string;
   label?: string;
-  value?: string;
+  value?: string | null;
   placeholder?: string;
   error?: string | null;
   events?: {
-    focusin: (e: Event) => void;
-    focusout: (e: Event) => void;
+    focusout?: (e: Event) => void;
+    click?: (e: Event) => void;
+    change?: (e: Event) => void;
   },
 }
 
-export default class Input extends Block<Props> {
-  constructor(props: Props) {
-    const events = {
-      focusin: (e: Event) => this.onFocus(e),
-      focusout: (e: Event) => this.onBlur(e),
-    };
-    super('div', { ...props, events });
-    this.element?.classList.add('form-control');
+export default class Input extends Block<InputProps> {
+  constructor(props: InputProps) {
+    super({
+      ...props,
+      events: {
+        ...props.events,
+        focusout: (event) => this.onBlur(event),
+      }
+    });
   }
 
   render(): DocumentFragment {
-    return this.compile(inputTemplate, this.props);
+    return this.compile(inputTemplate, { ...this.props});
   }
 
   validate(event: Event): void {
@@ -42,10 +43,6 @@ export default class Input extends Block<Props> {
         error: validateInput(input),
       });
     }
-  }
-
-  onFocus(event: Event): void {
-    this.validate(event);
   }
 
   onBlur(event: Event): void {

@@ -1,24 +1,26 @@
-import Block from '../../core/block';
+import { Block } from '../../core/block';
+import { ChatEntity } from '../../types/chat.types';
 import chatPreviewTemplate from './chat-preview-tmpl';
+import { State, withStore } from '../../core/Store';
 
-interface Props {
-  firstname: string,
-  lastname: string,
-  message: string,
-  time: string,
-  count: number,
-  events?: {
-    click?: (e: Event) => void;
-  },
+interface ChatPreviewProps {
+  chat: ChatEntity,
+  activeChat?: ChatEntity,
 }
-
-export default class ChatPreview extends Block<Props> {
-  constructor(props: Props) {
-    super('div', { ...props });
-    this.element?.classList.add('chat-preview');
+export class BaseChatPreview extends Block<ChatPreviewProps> {
+  constructor(props: ChatPreviewProps) {
+    super({ ...props });
   }
 
   render(): DocumentFragment {
-    return this.compile(chatPreviewTemplate, this.props);
+    return this.compile(chatPreviewTemplate, { ...this.props });
   }
 }
+
+function mapStateToProps(state: State) {
+  return {
+    activeChat: state.activeChat,
+  };
+}
+
+export const ChatPreviewWithStore = withStore(mapStateToProps)(BaseChatPreview);

@@ -22,6 +22,10 @@ html, body {
   scrollbar-width: thin;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

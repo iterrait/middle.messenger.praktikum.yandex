@@ -1,1 +1,1 @@
-export default `{{text}}`;
+export default `<a>{{text}}</a>`;

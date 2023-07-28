@@ -1,4 +1,5 @@
 export default `
+<div class="sign-up">
   <form id="sign-up-form">
     <div class="form-title">Регистрация</div>
       {{{emailInput}}}
@@ -10,4 +11,5 @@ export default `
       {{{confirmationPasswordInput}}}
       {{{signUpButton}}}
   </form>
+</div>
 `;

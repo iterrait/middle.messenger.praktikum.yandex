@@ -1,85 +1,88 @@
-import Block from '../../core/block';
-
-import { validateForm } from '../../utils/validator';
-
+import AuthController from '../../controllers/auth-controller';
+import { Block } from '../../core/block';
 import Button from '../../components/button/button';
 import Input from '../../components/input/input';
-
+import { ISignUpData } from '../../types/auth.types';
 import signUpTemplate from './sign-up-tmpl';
+import { validateForm } from '../../utils/validator';
+import { getFormData } from '../../utils/convert.utils';
 
-interface Props {
+interface SignUpProps {
+  confirmationPasswordInput: Block;
   emailInput: Block;
-  loginInput: Block;
   firstnameInput: Block;
   lastnameInput: Block;
-  phoneInput: Block;
+  loginInput: Block;
   passwordInput: Block;
-  confirmationPasswordInput: Block;
+  phoneInput: Block;
   signUpButton: Block;
-  events?: {
-    submit: (e: Event) => void;
-  };
 }
 
-const data = {
-  email: {
-    name: 'email',
-    label: 'почта',
-    type: 'text',
-    placeholder: 'example@example.ru',
-  },
-  login: {
-    name: 'login',
-    label: 'логин',
-    type: 'text',
-    placeholder: 'johndoe',
-  },
-  firstname: {
-    name: 'first_name',
-    label: 'имя',
-    type: 'text',
-    placeholder: 'John',
-  },
-  lastname: {
-    name: 'second_name',
-    label: 'фамилия',
-    type: 'text',
-    placeholder: 'Doe',
-  },
-  phone: {
-    name: 'phone',
-    label: 'телефон',
-    type: 'text',
-    placeholder: '+7 (012) 345-67-89',
-  },
-  password: {
-    name: 'password',
-    label: 'пароль',
-    type: 'password',
-    placeholder: 'Введите пароль...',
-  },
-  confirmationPassword: {
-    name: 'confirm_password',
-    label: 'подтверждение пароля',
-    type: 'password',
-    placeholder: 'Подтвердите пароль...',
-  },
-  button: {
-    text: 'зарегистрироваться',
-    attr: {
-      type: 'submit',
-      class: 'button-primary',
-    },
-  },
-};
+export class SignUpPage extends Block<SignUpProps> {
+  constructor(props: SignUpProps) {
+    super({ ...props });
+  }
 
-class SignUpPage extends Block<Props> {
-  constructor(props: Props) {
-    const events = {
-      submit: (e: Event) => this.onSubmit(e),
-    };
-    super('div', { ...props, events });
-    this.element?.classList.add('sign-up');
+  init() {
+    this.children.emailInput = new Input({
+      name: 'email',
+      label: 'почта',
+      type: 'text',
+      placeholder: 'example@example.ru',
+    });
+
+    this.children.passwordInput = new Input({
+      name: 'password',
+      label: 'пароль',
+      type: 'password',
+      placeholder: 'Введите пароль...',
+    });
+
+    this.children.confirmationPasswordInput = new Input({
+      name: 'confirm_password',
+      label: 'подтверждение пароля',
+      type: 'password',
+      placeholder: 'Подтвердите пароль...',
+    });
+
+    this.children.loginInput = new Input({
+      name: 'login',
+      label: 'логин',
+      type: 'text',
+      placeholder: 'johndoe',
+    });
+
+    this.children.firstnameInput = new Input({
+      name: 'first_name',
+      label: 'имя',
+      type: 'text',
+      placeholder: 'John',
+    });
+
+    this.children.lastnameInput = new Input({
+      name: 'second_name',
+      label: 'фамилия',
+      type: 'text',
+      placeholder: 'Doe',
+    });
+
+    this.children.phoneInput = new Input({
+      name: 'phone',
+      label: 'телефон',
+      type: 'text',
+      placeholder: '+7 (012) 345-67-89',
+    });
+
+    this.children.signUpButton = new Button({
+      text: 'Зарегистрироваться',
+      attr: {
+        type: 'submit',
+        class: 'button-primary',
+      },
+      events: {
+        click: (event) => this.onSubmit(event),
+      },
+    });
   }
 
   render(): DocumentFragment {
@@ -89,27 +92,16 @@ class SignUpPage extends Block<Props> {
   onSubmit(event: Event): void {
     event.preventDefault();
 
-    const form = document.getElementById('sign-up-form') as HTMLFormElement;
-    const formData = new FormData(form);
-    const obj: Record<string, any> = {};
+    const signUpForm = document.getElementById('sign-up-form') as HTMLFormElement;
 
-    validateForm(formData);
-
-    for (const pair of formData.entries()) {
-      obj[pair[0]] = pair[1];
+    if (!signUpForm) {
+      return;
     }
 
-    console.log('sign-up-form', obj);
+    const obj = getFormData(new FormData(signUpForm)) as ISignUpData;
+
+    if (validateForm(obj)) {
+      AuthController.signUp(obj).then();
+    }
   }
 }
-
-export default new SignUpPage({
-  emailInput: new Input(data.email),
-  loginInput: new Input(data.login),
-  firstnameInput: new Input(data.firstname),
-  lastnameInput: new Input(data.lastname),
-  phoneInput: new Input(data.phone),
-  passwordInput: new Input(data.password),
-  confirmationPasswordInput: new Input(data.confirmationPassword),
-  signUpButton: new Button(data.button),
-});

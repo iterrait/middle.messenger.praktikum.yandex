@@ -1,0 +1,121 @@
+@import './src/styles/partials/variables';
+
+.chat {
+  $icon-size: 24px;
+  $button-size: 40px;
+
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  .content {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-preview:not(:first-child) {
+    border-top: 1px solid $color-base-grey;
+  }
+
+  .chat__sidebar {
+    display: flex;
+    flex-direction: column;
+    width: $sidebar-width;
+    max-width: $sidebar-width;
+    background-color: $color-basic;
+  }
+
+  .chat__feed {
+    flex: 1;
+    background-color: $color-base;
+  }
+
+  .info {
+    width: 100%;
+    padding: 12px;
+
+    button {
+      margin-top: 12px;
+    }
+  }
+
+  .chats {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .owner-info {
+    width: 100%;
+    padding-bottom: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    color: $color-main;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .owner-status {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: $color-primary;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  .form-control {
+    margin-top: 0;
+  }
+
+  .choose-file {
+    min-width: $icon-size;
+    min-height: $icon-size;
+    width: $icon-size;
+    height: $icon-size;
+    margin-right: 12px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M21.44 11.05L12.25 20.24C11.1241 21.3658 9.59717 21.9983 8.00498 21.9983C6.4128 21.9983 4.88583 21.3658 3.75998 20.24C2.63414 19.1141 2.00165 17.5872 2.00165 15.995C2.00165 14.4028 2.63414 12.8758 3.75998 11.75L12.95 2.55998C13.7005 1.80942 14.7185 1.38776 15.78 1.38776C16.8414 1.38776 17.8594 1.80942 18.61 2.55998C19.3605 3.31054 19.7822 4.32852 19.7822 5.38998C19.7822 6.45144 19.3605 7.46942 18.61 8.21998L9.40998 17.41C9.0347 17.7853 8.52571 17.9961 7.99498 17.9961C7.46426 17.9961 6.95527 17.7853 6.57998 17.41C6.2047 17.0347 5.99387 16.5257 5.99387 15.995C5.99387 15.4643 6.2047 14.9553 6.57998 14.58L15.07 6.09998' stroke='%23C0C3CC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .message-input {
+    width: 100%;
+  }
+
+  .message input {
+    padding: 12px;
+    background-color: $color-base;
+    border-radius: 40px;
+    border: 1px solid $color-secondary;
+  }
+
+  .send-message {
+    width: $button-size;
+    height: $button-size;
+    margin-left: 40px;
+    background-color: $color-base;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M8 12.6666V3.33331' stroke='%23C0C3CC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M3.33334 7.99998L8 3.33331L12.6667 7.99998' stroke='%23C0C3CC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    border-radius: 40px;
+  }
+
+  [id="message-form"] {
+    box-shadow: 20px 3px 24px $color-secondary;
+  }
+}
