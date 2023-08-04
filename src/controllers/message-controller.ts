@@ -39,7 +39,7 @@ class MessagesController {
       return;
     }
 
-    let newMessages: MessageEntity[] = [];
+    const newMessages: MessageEntity[] = [];
     const userId = store.getState().user?.id;
     const currentMessages = store.getState().messages[chatId] ?? [];
 

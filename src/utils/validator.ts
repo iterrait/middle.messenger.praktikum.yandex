@@ -62,5 +62,5 @@ export const validateInput = (input: HTMLInputElement): string | null => {
 }
 
 export const validateForm = (data: Record<string, any>): boolean => (
-  Object.entries(data).every(([field, value]) => REGEXP[field]?.rule.test(value))
-);
+  Object.entries(data).every(([field, value]) => REGEXP[field]?.rule.test(value) ?? false)
+)

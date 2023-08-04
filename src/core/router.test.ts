@@ -1,39 +1,39 @@
-import { Block } from './block';
-import { Router } from './router';
-import {expect} from 'chai';
+import { Block } from './Block';
+import Router from './router';
+import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe('class Router', () => {
-  const div = document.createElement('div');
-  const fake = sinon.fake.returns(div);
-  const ComponentMock = class extends Block {
-    getContent = fake;
-  };
+const div = document.createElement('div');
+const fake = sinon.fake.returns(div);
+const COMPONENT_MOCK = class extends Block {
+  getContent = fake;
+};
 
-  it('The start() method draws the desired page', () => {
-    Router.use('/', ComponentMock);
+describe('Router', () => {
+  it('start success', () => {
+    Router.use('/', COMPONENT_MOCK);
     Router.start();
 
     expect(fake.callCount).to.equal(1);
   });
 
-  it('The back() method draws the desired page', () => {
+  it('back success', () => {
     Router.back();
 
     expect(fake.callCount).to.equal(1);
   });
 
-  it('The go() method draws the desired page', () => {
-    Router.use('/2', ComponentMock);
-    Router.go('/2');
+  it('go success', () => {
+    Router.use('/settings', COMPONENT_MOCK);
+    Router.go('/settings');
 
     expect(fake.callCount).to.equal(2);
   });
 
-  it('The go() method draws the desired page', () => {
-    Router.use('/3', ComponentMock);
+  it('go next success', () => {
+    Router.use('/messenger', COMPONENT_MOCK);
     Router.start();
-    Router.go('/3');
+    Router.go('/messenger');
 
     expect(fake.callCount).to.equal(3);
   });

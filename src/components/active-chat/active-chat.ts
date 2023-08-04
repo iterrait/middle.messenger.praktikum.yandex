@@ -22,7 +22,9 @@ export class ActiveChatWithStore extends Block<ActiveChatProps> {
     return this.compile(activeChatTemplate, { ...this.props });
   }
 
-  componentDidMount(): void {}
+  componentDidMount(): void {
+    return true;
+  }
 }
 
 function mapStateToProps(state: State) {

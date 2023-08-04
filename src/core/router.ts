@@ -1,7 +1,7 @@
 import Route from './route';
 import {Block} from './block';
 
-class Router {
+export class Router {
   private static __instance: Router;
   private routes: Route[] = [];
   private currentRoute: Route | null = null;

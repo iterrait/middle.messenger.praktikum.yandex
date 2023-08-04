@@ -78,13 +78,17 @@ export class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {}
+  protected init() {
+    return true;
+  }
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    return true;
+  }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -96,17 +100,15 @@ export class Block<P extends Record<string, any> = any> {
         child.dispatchComponentDidMount();
       }
     });
-
-    // Object.values(this.children).forEach(child => child?.dispatchComponentDidMount());
   }
 
-  private _componentDidUpdate(oldProps: P, newProps: P) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate() {
+    if (this.componentDidUpdate()) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: P, newProps: P) {
+  protected componentDidUpdate() {
     return true;
   }
 
@@ -205,15 +207,19 @@ export class Block<P extends Record<string, any> = any> {
   }
 
   _makePropsProxy(props: P) {
+    const self = this;
+
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
+
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set: (target, prop, value) => {
-        const oldValue = { ...target };
-        target[prop] = value;
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, target);
+      set: (target, prop: string, value) => {
+        const oldValue = {...target};
+
+        target[prop as keyof P] = value;
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, target);
         return true;
       },
       deleteProperty() {
@@ -223,11 +229,13 @@ export class Block<P extends Record<string, any> = any> {
   }
 
   public iffRegisterHelper() {
+    const self = this;
+
     Handlebars.registerHelper('iff', function (v1, v2, options) {
       if (v1 === v2) {
-        return options.fn(this);
+        return options.fn(self);
       }
-      return options.inverse(this);
+      return options.inverse(self);
     });
   }
 }

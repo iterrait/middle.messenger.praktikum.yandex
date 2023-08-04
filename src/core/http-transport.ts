@@ -11,13 +11,6 @@ type Options = {
   data?: any,
 }
 
-type RequestOptions = {
-  method: string,
-  headers?: Record<any, any>,
-  data?: any,
-}
-
-
 function queryStringify(data) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
@@ -29,7 +22,7 @@ function queryStringify(data) {
   }, '?');
 }
 
-type HTTPMethod<Response = void> = (url: string, options?: unknown) => Promise<unknown>;
+type HTTPMethod<Response = void> = (url: string, options?: Options) => Promise<Response | unknown>;
 
 export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
@@ -39,7 +32,7 @@ export class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  get: HTTPMethod = (url: string, options: Options) => {
+  get: HTTPMethod = (url, options) => {
     return this.request(options?.data
       ? `${this.endpoint + url}${queryStringify(options?.data)}`
       : (this.endpoint + url), {
@@ -49,30 +42,30 @@ export class HTTPTransport {
   };
 
 
-  post: HTTPMethod = (url: string, options: Options) => {
+  post: HTTPMethod = (url, options) => {
     return this.request(this.endpoint + url, { ...options, method: Method.Post });
   };
 
-  put: HTTPMethod = (url: string, options: Options, headers = {}) => {
+  put: HTTPMethod = (url, options, headers = {}) => {
     return this.request(this.endpoint + url, { ...options, method: Method.Put, headers });
   };
 
-  patch: HTTPMethod = (url: string, options: Options) => {
+  patch: HTTPMethod = (url, options) => {
     return this.request(this.endpoint + url, { ...options, method: Method.Patch });
   };
 
-  delete: HTTPMethod = (url: string, options: Options) => {
+  delete: HTTPMethod = (url, options) => {
     return this.request(this.endpoint + url, { ...options, method: Method.Delete });
   }
 
-  private request = (url: string, options: RequestOptions) => {
+  private request = (url, options) => {
     const { method, data } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = () => {
 
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {

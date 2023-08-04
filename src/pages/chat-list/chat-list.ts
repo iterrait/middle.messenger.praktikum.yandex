@@ -123,7 +123,7 @@ class BaseChatListPage extends Block<ChatProps> {
     const obj = getFormData(new FormData(sendForm));
 
     if (validateForm(obj)) {
-      messagesController.sendMessage(this.props.activeChat?.id!, formData.get('message') as string);
+      messagesController.sendMessage(this.props.activeChat.id!, formData.get('message') as string);
       this.setMessageInput();
     }
   }
