@@ -1,7 +1,7 @@
 import { CurrentChatWithStore } from '../../components/active-chat/active-chat';
 import BaseLink from '../../components/link/link';
 import { Block } from '../../core/block';
-import Button from '../../components/button/Button';
+import Button from '../../components/button/button';
 import ChatsController from '../../controllers/chats-controller';
 import { ChatEntity } from '../../types/chat.types';
 import { ChatPreviewWithStore} from '../../components/chat-preview/chat-preview';

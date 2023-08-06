@@ -1,5 +1,5 @@
 import { Block } from '../../core/block';
-import Button from '../../components/button/Button';
+import Button from '../../components/button/button';
 import changePasswordTemplate from './change-password-tmpl';
 import Input from '../../components/input/input';
 import router from '../../core/Router';
