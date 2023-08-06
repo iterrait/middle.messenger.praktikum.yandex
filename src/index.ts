@@ -6,7 +6,7 @@ import { ChatListPage } from './pages/chat-list/chat-list';
 import { SettingsPage } from './pages/settings/settings';
 import { SignInPage } from './pages/sign-in/sign-in';
 import { SignUpPage } from './pages/sign-up/sign-up';
-import router from './core/Router';
+import router from './core/router';
 
 enum Routes {
   Index = '/',
