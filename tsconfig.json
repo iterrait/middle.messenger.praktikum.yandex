@@ -1,38 +1,26 @@
 {
-  "include": [
-    "./src",
-    "./server.ts",
-    "./**/*.ts"
-  ],
-  "exclude": [
-    "./dist",
-    "./node_modules"
-  ],
   "ts-node": {
     "files": true
   },
   "compilerOptions": {
-    "target": "ES2016",
+    "target": "es2016",
     "module": "commonjs",
-    "allowJs": true,
-    "strict": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "noEmit": true,
-    "noImplicitReturns": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "sourceMap": true,
-    "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
+
+    /* Bundler mode */
+
     "allowImportingTsExtensions": true,
-    "lib": ["ESNext", "ES2020","DOM"],
-    "moduleResolution": "Node",
-    "typeRoots": [
-      "./src/@types",
-      "./node_modules/@types"
-    ],
-  }
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
 }

@@ -1,4 +1,4 @@
-import { Block } from '../../core/block';
+import { Block } from '../../core/Block';
 import inputTemplate from './input-tmpl';
 import { validateInput } from '../../utils/validator';
 

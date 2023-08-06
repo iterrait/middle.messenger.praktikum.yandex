@@ -1,5 +1,5 @@
-import { Block } from '../../core/block';
-import Button from '../../components/button/button';
+import { Block } from '../../core/Block';
+import Button from '../../components/button/Button';
 import overflowMenuTemplate from './overflow-menu-tmpl';
 import { BaseAddUserPopup } from '../popups/add-user-popup/add-user-popup';
 import { State, store, withStore } from '../../core/Store';

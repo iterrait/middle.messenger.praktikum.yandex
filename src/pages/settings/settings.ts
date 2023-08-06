@@ -1,12 +1,12 @@
 import AuthController from '../../controllers/auth-controller';
-import {Block} from '../../core/block';
-import Button from '../../components/button/button';
+import {Block} from '../../core/Block';
+import Button from '../../components/button/Button';
 import Input from '../../components/input/input';
 import settingsTemplate from './settings-tmpl';
 import {validateForm} from '../../utils/validator';
 import BaseLink from '../../components/link/link';
 import { State, withStore } from '../../core/Store';
-import router from '../../core/router';
+import router from '../../core/Router';
 import { AvatarButtonWithStore } from '../../components/avatar-button/avatar-button';
 import { settingsController } from '../../controllers/settings-controller';
 import { getFormData } from '../../utils/convert.utils';

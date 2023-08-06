@@ -11,7 +11,7 @@ type Options = {
   data?: any,
 }
 
-function queryStringify(data) {
+function queryStringify(data: unknown) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
@@ -58,7 +58,7 @@ export class HTTPTransport {
     return this.request(this.endpoint + url, { ...options, method: Method.Delete });
   }
 
-  private request = (url, options) => {
+  private request = (url: string, options: any) => {
     const { method, data } = options;
 
     return new Promise((resolve, reject) => {

@@ -2,7 +2,7 @@ import sinon, { SinonFakeXMLHttpRequestStatic, SinonFakeXMLHttpRequest } from 's
 import { expect } from 'chai';
 import { HTTPTransport } from './http-transport';
 
-describe('class HTTPTransport', () => {
+describe('HTTPTransport test', () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let instance: HTTPTransport;
   const requests: SinonFakeXMLHttpRequest[] = [];
@@ -10,11 +10,12 @@ describe('class HTTPTransport', () => {
   beforeEach(() => {
     xhr = sinon.useFakeXMLHttpRequest();
 
+    // @ts-expect-error
     global.XMLHttpRequest = xhr;
 
     xhr.onCreate = (req) => {
       requests.push(req);
-    };
+    }
 
     instance = new HTTPTransport('');
   });
@@ -24,48 +25,43 @@ describe('class HTTPTransport', () => {
     xhr.restore();
   });
 
-  describe('method call', () => {
-    const path = '';
-    const options = {};
+  it('Method get() should be called with GET method', () => {
+    instance.get('/');
 
-    it('GET method should be called success', () => {
-      instance.get(path, options);
+    const [request] = requests;
 
-      const [request] = requests;
+    expect(request.method).to.equal('Get');
+  });
 
-      expect(request.method).to.equal('GET');
-    });
+  it('Method post() should be called with POST method', () => {
+    instance.post('/');
 
-    it('POST method should be called success', () => {
-      instance.post(path, options);
+    const [request] = requests;
 
-      const [request] = requests;
+    expect(request.method).to.equal('Post');
+  });
 
-      expect(request.method).to.equal('POST');
-    });
+  it('Method put() should be called with PUT method', () => {
+    instance.put('/');
 
-    it('PUT method should be called success', () => {
-      instance.put(path, options);
+    const [request] = requests;
 
-      const [request] = requests;
+    expect(request.method).to.equal('Put');
+  });
 
-      expect(request.method).to.equal('PUT');
-    });
+  it('Method patch() should be called with PATCH method', () => {
+    instance.patch('/');
 
-    it('PATCH method should be called success', () => {
-      instance.patch(path, options);
+    const [request] = requests;
 
-      const [request] = requests;
+    expect(request.method).to.equal('Patch');
+  });
 
-      expect(request.method).to.equal('PATCH');
-    });
+  it('Method delete() should be called with DELETE method', () => {
+    instance.delete('/');
 
-    it('DELETE method should be called success', () => {
-      instance.delete(path, options);
+    const [request] = requests;
 
-      const [request] = requests;
-
-      expect(request.method).to.equal('DELETE');
-    });
+    expect(request.method).to.equal('Delete');
   });
 });

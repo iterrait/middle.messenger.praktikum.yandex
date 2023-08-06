@@ -1,8 +1,8 @@
-import { Block } from '../../core/block';
-import Button from '../../components/button/button';
+import { Block } from '../../core/Block';
+import Button from '../../components/button/Button';
 import changePasswordTemplate from './change-password-tmpl';
 import Input from '../../components/input/input';
-import router from '../../core/router';
+import router from '../../core/Router';
 import { settingsController } from '../../controllers/settings-controller';
 import { validateForm } from '../../utils/validator';
 import { getFormData } from '../../utils/convert.utils';

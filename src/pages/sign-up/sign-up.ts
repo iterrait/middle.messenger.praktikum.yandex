@@ -1,6 +1,6 @@
 import AuthController from '../../controllers/auth-controller';
-import { Block } from '../../core/block';
-import Button from '../../components/button/button';
+import { Block } from '../../core/Block';
+import Button from '../../components/button/Button';
 import Input from '../../components/input/input';
 import { ISignUpData } from '../../types/auth.types';
 import signUpTemplate from './sign-up-tmpl';

@@ -7,7 +7,3 @@ const { window } = new JSDOM('<main></main>', {
 global.window = window;
 global.document = window.document;
 global.DocumentFragment = window.DocumentFragment;
-
-require.extensions['.ts'] = function () {
-    module.exports = () => ({});
-};

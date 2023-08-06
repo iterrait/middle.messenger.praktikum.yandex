@@ -4,7 +4,7 @@ import {
   ISignInData,
   ISignUpData,
 } from '../types/auth.types';
-import Router from '../core/router';
+import Router from '../core/Router';
 import MessagesController from '../controllers/message-controller';
 
 class AuthController {

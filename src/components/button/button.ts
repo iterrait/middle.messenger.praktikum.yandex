@@ -1,4 +1,4 @@
-import { Block } from '../../core/block';
+import { Block } from '../../core/Block';
 import buttonTemplate from './button-tmpl';
 
 interface Props {

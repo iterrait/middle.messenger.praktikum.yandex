@@ -1,5 +1,5 @@
-import { Block } from '../../../core/block';
-import Button from '../../button/button';
+import { Block } from '../../../core/Block';
+import Button from '../../button/Button';
 import ChatsController from '../../../controllers/chats-controller';
 import deleteUserPopupTemplate from './delete-user-popup-tmpl';
 import Input from '../../input/input';

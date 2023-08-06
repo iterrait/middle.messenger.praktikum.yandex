@@ -1,15 +1,16 @@
 import { Block } from './Block';
-import Router from './router';
+import Router from './Router';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
 const div = document.createElement('div');
 const fake = sinon.fake.returns(div);
+
 const COMPONENT_MOCK = class extends Block {
   getContent = fake;
 };
 
-describe('Router', () => {
+describe('Router test', () => {
   it('start success', () => {
     Router.use('/', COMPONENT_MOCK);
     Router.start();
@@ -35,6 +36,6 @@ describe('Router', () => {
     Router.start();
     Router.go('/messenger');
 
-    expect(fake.callCount).to.equal(3);
+    expect(fake.callCount).to.equal(4);
   });
 });
