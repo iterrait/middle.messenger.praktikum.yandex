@@ -1,4 +1,4 @@
-import { Block } from './Block';
+import { Block } from './block';
 import {ChatEntity, MessageEntity} from '../types/chat.types';
 import EventBus from './event-bus';
 import { IUser } from '../types/auth.types';

@@ -1,4 +1,4 @@
-import { Block } from './Block';
+import { Block } from './block';
 import Router from './router';
 import { expect } from 'chai';
 import sinon from 'sinon';

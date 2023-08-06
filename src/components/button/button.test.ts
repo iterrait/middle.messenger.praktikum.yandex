@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import Button from './Button';
+import Button from './button';
 
 describe('Button component test', () => {
   it("button should be click", () => {
