@@ -1,6 +1,6 @@
 import AuthController from '../../controllers/auth-controller';
 import BaseLink from '../../components/link/link';
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import Button from '../../components/button/Button';
 import Input from '../../components/input/input';
 import { ISignInData } from '../../types/auth.types';

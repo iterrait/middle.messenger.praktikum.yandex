@@ -1,6 +1,6 @@
 import { CurrentChatWithStore } from '../../components/active-chat/active-chat';
 import BaseLink from '../../components/link/link';
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import Button from '../../components/button/Button';
 import ChatsController from '../../controllers/chats-controller';
 import { ChatEntity } from '../../types/chat.types';

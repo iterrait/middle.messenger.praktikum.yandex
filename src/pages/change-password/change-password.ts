@@ -1,4 +1,4 @@
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import Button from '../../components/button/Button';
 import changePasswordTemplate from './change-password-tmpl';
 import Input from '../../components/input/input';
