@@ -11,7 +11,7 @@ type Options = {
   data?: any,
 }
 
-function queryStringify(data: unknown) {
+function queryStringify(data: any) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
