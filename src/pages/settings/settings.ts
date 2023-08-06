@@ -6,7 +6,7 @@ import settingsTemplate from './settings-tmpl';
 import {validateForm} from '../../utils/validator';
 import BaseLink from '../../components/link/link';
 import { State, withStore } from '../../core/Store';
-import router from '../../core/Router';
+import router from '../../core/router';
 import { AvatarButtonWithStore } from '../../components/avatar-button/avatar-button';
 import { settingsController } from '../../controllers/settings-controller';
 import { getFormData } from '../../utils/convert.utils';
