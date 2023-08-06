@@ -1,4 +1,4 @@
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import buttonTemplate from './avatar-button-tmpl';
 import { State, withStore } from '../../core/Store';
 

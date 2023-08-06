@@ -1,5 +1,5 @@
-import { Block } from '../../../core/Block';
-import Button from '../../button/Button';
+import { Block } from '../../../core/block';
+import Button from '../../button/button';
 import ChatsController from '../../../controllers/chats-controller';
 import createChatPopupTemplate from './create-chat-popup-tmpl';
 import { CreateChatEntity } from '../../../types/chat.types';

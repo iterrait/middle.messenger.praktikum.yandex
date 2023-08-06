@@ -1,4 +1,4 @@
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import {ChatEntity, MessageEntity} from '../../types/chat.types';
 import activeChatTemplate from './active-chat-tmpl';
 import { State, withStore } from '../../core/Store';

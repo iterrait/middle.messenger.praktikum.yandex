@@ -1,4 +1,4 @@
-import { Block } from '../../core/Block';
+import { Block } from '../../core/block';
 import UserPreviewTmpl from './user-preview-tmpl';
 
 interface UserPreviewProps {
