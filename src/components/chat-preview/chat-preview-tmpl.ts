@@ -1,6 +1,6 @@
 export default `
   <div data-id="{{chat.id}}" class="chat-preview {{#iff activeChat.id chat.id}}active-chat{{/iff}}">
-    <div class="chat-preview__avatar">{{chat.avatar}}</div>
+    <div class="chat-preview__avatar"></div>
     <div class="wrapper">
       <div class="chat-preview__info">{{chat.title}}</div>
       <div class="chat-preview__message">

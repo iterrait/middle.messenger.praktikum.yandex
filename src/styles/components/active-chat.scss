@@ -34,15 +34,6 @@
     text-overflow: ellipsis;
   }
 
-  .current-chat__messages {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 100%;
-    padding: 12px;
-    overflow-y: auto;
-  }
-
   .chat__pug {
     display: flex;
     justify-content: center;

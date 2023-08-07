@@ -8,8 +8,8 @@ import { UserData } from '../../../types/chat.types';
 
 interface AddUserPopupProps {
   events?: {
-    onCancelClick?: Function,
-    onSubmitClick?: Function,
+    onCancelClick?: unknown,
+    onSubmitClick?: unknown,
   }
 }
 
@@ -69,7 +69,7 @@ export class BaseAddUserPopup extends Block<AddUserPopupProps> {
 
     const data: UserData = {
       chatId: chatId,
-      users: [formData.get('userId') as Number],
+      users: [formData.get('userId') as number],
     };
 
     await ChatsController.addUserToChat(data).then(() => {

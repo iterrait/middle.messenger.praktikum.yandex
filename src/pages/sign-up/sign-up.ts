@@ -26,6 +26,7 @@ export class SignUpPage extends Block<SignUpProps> {
   init() {
     this.children.emailInput = new Input({
       name: 'email',
+      id: 'email',
       label: 'почта',
       type: 'text',
       placeholder: 'example@example.ru',
@@ -33,13 +34,15 @@ export class SignUpPage extends Block<SignUpProps> {
 
     this.children.passwordInput = new Input({
       name: 'password',
+      id: 'password',
       label: 'пароль',
       type: 'password',
       placeholder: 'Введите пароль...',
     });
 
     this.children.confirmationPasswordInput = new Input({
-      name: 'confirm_password',
+      name: 'confirmPassword',
+      id: 'confirmPassword',
       label: 'подтверждение пароля',
       type: 'password',
       placeholder: 'Подтвердите пароль...',
@@ -47,6 +50,7 @@ export class SignUpPage extends Block<SignUpProps> {
 
     this.children.loginInput = new Input({
       name: 'login',
+      id: 'login',
       label: 'логин',
       type: 'text',
       placeholder: 'johndoe',
@@ -54,6 +58,7 @@ export class SignUpPage extends Block<SignUpProps> {
 
     this.children.firstnameInput = new Input({
       name: 'first_name',
+      id: 'first_name',
       label: 'имя',
       type: 'text',
       placeholder: 'John',
@@ -61,6 +66,7 @@ export class SignUpPage extends Block<SignUpProps> {
 
     this.children.lastnameInput = new Input({
       name: 'second_name',
+      id: 'second_name',
       label: 'фамилия',
       type: 'text',
       placeholder: 'Doe',
@@ -68,6 +74,7 @@ export class SignUpPage extends Block<SignUpProps> {
 
     this.children.phoneInput = new Input({
       name: 'phone',
+      id: 'phone',
       label: 'телефон',
       type: 'text',
       placeholder: '+7 (012) 345-67-89',

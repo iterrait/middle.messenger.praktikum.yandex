@@ -8,8 +8,8 @@ import { UserData } from '../../../types/chat.types';
 
 interface DeleteUserPopupProps {
   events?: {
-    onCancelClick?: Function,
-    onSubmitClick?: Function,
+    onCancelClick?: unknown,
+    onSubmitClick?: unknown,
   }
 }
 
@@ -69,11 +69,11 @@ export class BaseDeleteUserPopup extends Block<DeleteUserPopupProps> {
 
     const data: UserData = {
       chatId: chatId,
-      users: [formData.get('userId') as Number],
+      users: [formData.get('userId') as number],
     };
 
     await ChatsController.deleteUserFromChat(data).then(() => {
-      ChatsController.getChatList({}).then(() => {
+      ChatsController.getChatList().then(() => {
         this.props.events?.onSubmitClick();
       });
     });

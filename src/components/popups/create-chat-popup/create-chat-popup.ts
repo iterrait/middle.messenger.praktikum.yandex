@@ -7,8 +7,8 @@ import Input from '../../input/input';
 
 interface CreateChatPopupProps {
   events?: {
-    onCancelClick?: Function,
-    onSubmitClick?: Function,
+    onCancelClick?: unknown,
+    onSubmitClick?: unknown,
   }
 }
 
@@ -69,7 +69,7 @@ export class CreateChatPopup extends Block<CreateChatPopupProps> {
     };
 
     await ChatsController.createChat(data).then(() => {
-      ChatsController.getChatList({}).then(() => {
+      ChatsController.getChatList().then(() => {
         this.props.events?.onSubmitClick();
       });
     });
